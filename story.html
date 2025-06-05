@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Story - Nature's Plate</title>
+    <style>
+        /* Reuse the same CSS from index.html */
+        :root {
+            --primary-color: #4a6f28;
+            --secondary-color: #8ba888;
+            --accent-color: #d4b483;
+            --text-color: #333;
+            --light-color: #f9f7f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(74, 111, 40, 0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c19e5f;
+            transform: translateY(-3px);
+        }
+        
+        section {
+            padding: 7rem 2rem 5rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+        
+        .story-header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        .story-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .story-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .story-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .story-text h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .story-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .milestones {
+            margin-top: 3rem;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .milestone {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .milestone:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .milestone h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .milestone-date {
+            font-style: italic;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background-color: var(--primary-color);
+                padding: 1rem 0;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+                text-align: center;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .story-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .story-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">Nature's Plate</a>
+        <div class="hamburger">☰</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#menu">Menu</a></li>
+            <li><a href="index.html#gallery">Gallery</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="story.html">My Story</a></li>
+        </ul>
+    </nav>
+
+    <!-- Story Header -->
+    <div class="story-header">
+        <h1>My Culinary Journey</h1>
+        <p>From dream to reality - the story of Sonam Choki</p>
+    </div>
+
+    <!-- Story Content -->
+    <section class="story">
+        <div class="container">
+            <div class="story-content">
+                <div class="story-text">
+                    <h2>Hello, I'm Sonam Choki</h2>
+                    <p>Growing up in Bhutan, I was always surrounded by the breathtaking beauty of nature and the rich flavors of our traditional cuisine. Some of my fondest memories are of helping my mother and grandmother prepare meals using ingredients we gathered from our garden and the local markets.</p>
+                    <p>My passion for cooking started at a young age, but it wasn't until I traveled abroad and experienced different culinary traditions that I realized how special our Bhutanese food culture truly is. I made it my mission to share these flavors with the world while staying true to our roots.</p>
+                    <p>Nature's Plate is the culmination of years of dreaming, learning, and perfecting my craft. Located near Kaja Throm in Thimphu, our restaurant offers not just food, but an experience that connects people to Bhutan's natural beauty and culinary heritage.</p>
+                    <p>Every dish we serve tells a story - of our land, our people, and my personal journey as a Bhutanese woman entrepreneur in the culinary world.</p>
+                </div>
+                <div class="story-img">
+                    <img src="https://images.unsplash.com/photo-1551218372-a1aed9a9c358?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Sonam Choki in the kitchen">
+                </div>
+            </div>
+
+            <div class="milestones">
+                <h2 class="section-title">My Journey</h2>
+                <div class="milestone">
+                    <h3>Early Inspiration</h3>
+                    <div class="milestone-date">1990s - Childhood</div>
+                    <p>Learned traditional Bhutanese cooking from my mother and grandmother, developing a deep appreciation for local ingredients and flavors.</p>
+                </div>
+                <div class="milestone">
+                    <h3>Culinary Education</h3>
+                    <div class="milestone-date">2010-2012</div>
+                    <p>Attended the Bhutan Institute of Hospitality and Tourism, specializing in Bhutanese and Asian cuisine.</p>
+                </div>
+                <div class="milestone">
+                    <h3>International Experience</h3>
+                    <div class="milestone-date">2013-2015</div>
+                    <p>Worked in restaurants in Thailand and India, expanding my culinary horizons while always looking for ways to incorporate Bhutanese flavors.</p>
+                </div>
+                <div class="milestone">
+                    <h3>Return to Bhutan</h3>
+                    <div class="milestone-date">2016-2019</div>
+                    <p>Came back to Thimphu with a renewed vision for showcasing Bhutanese cuisine, working at several top restaurants while developing my own concepts.</p>
+                </div>
+                <div class="milestone">
+                    <h3>Nature's Plate is Born</h3>
+                    <div class="milestone-date">2023</div>
+                    <p>Opened Nature's Plate near Kaja Throm, combining my love for Bhutanese cuisine with inspiration from our country's stunning natural beauty.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3>Nature's Plate</h3>
+            <p>Where nature meets culinary artistry</p>
+            <div class="social-links">
+                <a href="#"><span>FB</span></a>
+                <a href="#"><span>IG</span></a>
+                <a href="#"><span>TW</span></a>
+            </div>
+            <p>&copy; 2023 Nature's Plate by Sonam Choki. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Sticky navigation on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.backgroundColor = 'rgba(74, 111, 40, 0.95)';
+            } else {
+                nav.style.backgroundColor = 'rgba(74, 111, 40, 0.9)';
+            }
+        });
+    </script>
+</body>
+</html>
